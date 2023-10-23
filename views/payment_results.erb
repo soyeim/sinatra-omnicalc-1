@@ -7,7 +7,7 @@
     APR
   </dt>
   <dd>
-    <%= @apr.to_fs %>
+    <%= params.fetch("user_apr").to_f.to_fs(:percentage) %>
   </dd>
 
   <dt>
@@ -21,14 +21,14 @@
     Principal
   </dt>
   <dd>
-    <%= @pv %>
+    <%= @pv.to_fs(:currency) %>
   </dd>
 
   <dt>
     Payment
   </dt>
   <dd>
-    <%= @result %>
+    <%= @result.to_fs(:currency) %>
   </dd>
 </dl>
 

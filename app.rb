@@ -34,12 +34,15 @@ get("/payment/new") do
 end
 
 get("/payment/results") do
-  @apr = params.fetch("user_apr").to_f/100
   @yr = params.fetch("user_years").to_i
-  @period = @yr * 12
+  @n = @yr * 12
+  @apr = params.fetch("user_apr").to_f/100
+  @r = @apr/@n
   @pv = params.fetch("user_pv").to_f
-  @numerator = @apr * @pv
-  @denom = 1 - (1+ @apr) ** -@period
+  @numerator = @r * @pv
+  @d1 = 1+ @r
+  @d2 = -@n
+  @denom = 1 - @d1 ** @d2
 
   @result = @numerator/@denom
   erb(:payment_results)
