@@ -34,7 +34,7 @@ get("/payment/new") do
 end
 
 get("/payment/results") do
-  @yr = params.fetch("user_years").to_i
+  @yr = params.fetch("user_years").to_f
   @n = @yr * 12
   @apr = params.fetch("user_apr").to_f/100
   @r = @apr/@n
